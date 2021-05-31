@@ -1,3 +1,11 @@
 rootProject.name = "Osiris"
-include ':app'
+
 include ':osiris'
+
+include ':osiris-dispatchers:adjust'
+include ':osiris-dispatchers:delphoi'
+include ':osiris-dispatchers:facebook'
+include ':osiris-dispatchers:firebase'
+include ':osiris-dispatchers:newrelic'
+
+include ':app'
