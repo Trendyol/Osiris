@@ -8,4 +8,4 @@ include ':osiris-dispatchers:facebook'
 include ':osiris-dispatchers:firebase'
 include ':osiris-dispatchers:newrelic'
 
-include ':app'
+include ':sample'
