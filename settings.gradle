@@ -1,11 +1,11 @@
 rootProject.name = "Osiris"
 
-include ':osiris'
+include ':osiris-core'
 
-include ':osiris-dispatchers:adjust'
-include ':osiris-dispatchers:delphoi'
-include ':osiris-dispatchers:facebook'
-include ':osiris-dispatchers:firebase'
-include ':osiris-dispatchers:newrelic'
+include ':dispatchers:adjust'
+include ':dispatchers:delphoi'
+include ':dispatchers:facebook'
+include ':dispatchers:firebase'
+include ':dispatchers:newrelic'
 
 include ':sample'
