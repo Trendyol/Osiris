@@ -35,6 +35,10 @@ android {
 }
 
 dependencies {
+    implementation project(":osiris-core")
+    implementation project(":dispatchers:adjust")
+    implementation project(":dispatchers:firebase")
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     implementation 'androidx.core:core-ktx:1.5.0'
