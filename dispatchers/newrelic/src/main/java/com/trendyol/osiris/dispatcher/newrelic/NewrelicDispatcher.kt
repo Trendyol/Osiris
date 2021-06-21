@@ -5,7 +5,7 @@ import com.trendyol.osiris.Event
 
 class NewrelicDispatcher : Dispatcher {
 
-    init {
+    override fun init() {
         // todo init newrelic
     }
 

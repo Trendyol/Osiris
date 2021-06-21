@@ -6,7 +6,7 @@ import com.trendyol.osiris.Event
 
 class FacebookDispatcher(context: Context) : Dispatcher {
 
-    init {
+    override fun init() {
         // todo init facebook with context
     }
 

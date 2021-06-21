@@ -6,7 +6,7 @@ import com.trendyol.osiris.Event
 
 class FirebaseDispatcher(context: Context) : Dispatcher {
 
-    init {
+    override fun init() {
         // todo init firebase with context
     }
 
