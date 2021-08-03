@@ -1,6 +1,6 @@
 package com.trendyol.osiris
 
-abstract class Event(val name: String = "") {
+abstract class Event(open val name: String = "") {
 
     private val params = mutableMapOf<String, Any>()
 
