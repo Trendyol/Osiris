@@ -1,17 +1,21 @@
 package com.trendyol.osiris.dispatcher.firebase
 
-import android.content.Context
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
 import com.trendyol.osiris.Dispatcher
 import com.trendyol.osiris.Event
 
-class FirebaseDispatcher(context: Context) : Dispatcher {
+class FirebaseDispatcher : Dispatcher {
 
-    override fun init() {
-        // todo init firebase with context
-    }
+    private val firebase: FirebaseAnalytics = Firebase.analytics
+
+    private val mapper by lazy { FirebaseEventMapper() }
 
     override fun logEvent(event: Event) {
-        println(event.name)
+        val firebaseEvent = event as FirebaseEvent
+        val bundle = mapper.map(event)
+        firebase.logEvent(firebaseEvent.name, bundle)
     }
 
     override fun isSatisfied(event: Event): Boolean {

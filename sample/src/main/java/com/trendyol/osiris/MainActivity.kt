@@ -21,8 +21,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val adjustDispatcher = getAdjustDispatcher(this)
-        osiris.addDispatchers(adjustDispatcher, FirebaseDispatcher(this)).init()
+        osiris.addDispatchers(
+            getAdjustDispatcher(this),
+            FirebaseDispatcher()
+        )
 
         osiris.logEvents(buildAdjustEvent(), SeenEvent())
     }

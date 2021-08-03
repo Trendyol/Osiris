@@ -5,11 +5,11 @@ import com.adjust.sdk.AdjustConfig
 import com.trendyol.osiris.Dispatcher
 import com.trendyol.osiris.Event
 
-class AdjustDispatcher(private val adjustConfig: AdjustConfig) : Dispatcher {
+class AdjustDispatcher(adjustConfig: AdjustConfig) : Dispatcher {
 
     private val adjustEventMapper by lazy { AdjustEventMapper() }
 
-    override fun init() {
+    init {
         Adjust.onCreate(adjustConfig)
     }
 

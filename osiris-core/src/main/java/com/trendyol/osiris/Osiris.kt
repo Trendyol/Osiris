@@ -8,12 +8,9 @@ class Osiris {
         this.dispatchers.addAll(dispatchers)
     }
 
-    fun init() {
-        check(dispatchers.isNotEmpty()) { "At least one dispatcher should be set" }
-        dispatchers.forEach { dispatcher -> dispatcher.init() }
-    }
-
     fun logEvents(vararg events: Event) {
+        check(dispatchers.isNotEmpty()) { "At least one dispatcher should be set" }
+
         events.forEach { event ->
             val dispatcher: Dispatcher = dispatchers.find { it.isSatisfied(event) } ?: return
 
