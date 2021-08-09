@@ -5,10 +5,6 @@ import com.trendyol.osiris.Event
 
 class NewrelicDispatcher : Dispatcher {
 
-    override fun init() {
-        // todo init newrelic
-    }
-
     override fun logEvent(event: Event) {
         TODO("Not yet implemented")
     }

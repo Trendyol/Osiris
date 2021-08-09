@@ -5,10 +5,6 @@ import com.trendyol.osiris.Event
 
 class DelphoiDispatcher : Dispatcher {
 
-    override fun init() {
-        // todo init delphoi
-    }
-
     override fun logEvent(event: Event) {
         TODO("Not yet implemented")
     }
