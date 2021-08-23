@@ -11,6 +11,8 @@ import com.trendyol.osiris.dispatcher.adjust.adjustParametrizedData
 import com.trendyol.osiris.dispatcher.adjust.criteo.CriteoInjection
 import com.trendyol.osiris.dispatcher.adjust.data.AdjustParameter
 import com.trendyol.osiris.dispatcher.adjust.data.AdjustRevenue
+import com.trendyol.osiris.dispatcher.facebook.FacebookDispatcher
+import com.trendyol.osiris.dispatcher.facebook.FacebookEvent
 import com.trendyol.osiris.dispatcher.firebase.FirebaseDispatcher
 import com.trendyol.osiris.dispatcher.firebase.FirebaseEvent
 
@@ -23,15 +25,19 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         osiris.addDispatchers(
             getAdjustDispatcher(this),
-            FirebaseDispatcher()
+            FirebaseDispatcher(),
+            getFacebookDispatcher(this)
         )
-
-        osiris.logEvents(buildAdjustEvent(), SeenEvent())
+        osiris.logEvents(buildAdjustEvent(), SeenEvent(), SampleFacebookEvent("Erol"))
     }
 }
 
 private fun getAdjustDispatcher(context: Context): AdjustDispatcher {
     return AdjustDispatcher(AdjustConfig(context, "", ""))
+}
+
+private fun getFacebookDispatcher(context: Context): FacebookDispatcher {
+    return FacebookDispatcher(context)
 }
 
 private fun buildAdjustEvent(): OsirisAdjustEvent {
@@ -51,3 +57,5 @@ private fun buildAdjustEvent(): OsirisAdjustEvent {
 }
 
 class SeenEvent : FirebaseEvent("SeenEvent")
+
+class SampleFacebookEvent(override val name: String) : FacebookEvent(name)

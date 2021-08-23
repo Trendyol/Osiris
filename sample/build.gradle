@@ -38,6 +38,7 @@ dependencies {
     implementation project(":osiris-core")
     implementation project(":dispatchers:adjust")
     implementation project(":dispatchers:firebase")
+    implementation project(":dispatchers:facebook")
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
