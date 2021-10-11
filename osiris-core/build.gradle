@@ -12,3 +12,17 @@ java {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                // You can then customize attributes of the publication as shown below.
+                groupId = 'com.trendyol'
+                artifactId = 'osiris'
+                version = '1.0.0'
+            }
+        }
+    }
+}
