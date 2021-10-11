@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'maven-publish'
 }
 
 android {
@@ -40,4 +41,20 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     api "com.adjust.sdk:adjust-android:4.25.0"
     api "com.adjust.sdk:adjust-android-criteo:4.25.0"
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                // You can then customize attributes of the publication as shown below.
+                groupId = 'com.trendyol.osiris'
+                artifactId = 'dispatcher-adjust'
+                version = '1.0.0'
+
+                from components.release
+            }
+        }
+    }
 }
