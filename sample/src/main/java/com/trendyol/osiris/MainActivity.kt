@@ -15,8 +15,8 @@ import com.trendyol.osiris.dispatcher.facebook.FacebookDispatcher
 import com.trendyol.osiris.dispatcher.facebook.FacebookEvent
 import com.trendyol.osiris.dispatcher.firebase.FirebaseDispatcher
 import com.trendyol.osiris.dispatcher.firebase.FirebaseEvent
-import com.trendyol.osiris.dispatcher.newrelic.NewrelicDispatcher
-import com.trendyol.osiris.dispatcher.newrelic.NewrelicEvent
+import com.trendyol.osiris.dispatcher.newrelic.NewRelicDispatcher
+import com.trendyol.osiris.dispatcher.newrelic.NewRelicEvent
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             getAdjustDispatcher(this),
             FirebaseDispatcher(),
             getFacebookDispatcher(this),
-            NewrelicDispatcher()
+            NewRelicDispatcher()
         )
         osiris.logEvents(buildAdjustEvent(), SeenEvent(), SampleFacebookEvent("Erol"), buildNewRelicEvent())
     }
@@ -60,13 +60,13 @@ private fun buildAdjustEvent(): OsirisAdjustEvent {
 }
 
 @OptIn(ExperimentalStdlibApi::class)
-private fun buildNewRelicEvent(): NewrelicEvent {
+private fun buildNewRelicEvent(): NewRelicEvent {
     val attributes = buildMap<String, Any> {
         put("screenName", "DeeplinkScreen")
         put("errorCode", "408")
         put("errorDescription", "RequestTimeout")
     }
-    return NewrelicEvent("ResolveDeeplinkError", attributes)
+    return NewRelicEvent("ResolveDeeplinkError", attributes)
 }
 
 class SeenEvent : FirebaseEvent("SeenEvent")
