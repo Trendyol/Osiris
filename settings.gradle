@@ -3,7 +3,6 @@ rootProject.name = "Osiris"
 include ':osiris-core'
 
 include ':dispatchers:adjust'
-include ':dispatchers:delphoi'
 include ':dispatchers:facebook'
 include ':dispatchers:firebase'
 include ':dispatchers:newrelic'
