@@ -12,7 +12,7 @@ class Osiris {
         check(dispatchers.isNotEmpty()) { "At least one dispatcher should be set" }
 
         events.forEach { event ->
-            val dispatcher: Dispatcher = dispatchers.find { it.isSatisfied(event) } ?: return
+            val dispatcher: Dispatcher = dispatchers.find { it.isSatisfied(event) } ?: return@forEach
 
             dispatcher.logEvent(event)
         }
