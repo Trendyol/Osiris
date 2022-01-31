@@ -1,6 +1,7 @@
 plugins {
     id 'java-library'
     id 'kotlin'
+    id 'maven-publish'
 }
 
 java {
@@ -12,4 +13,21 @@ dependencies {
     implementation project(':osiris-core')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "com.newrelic.agent.android:android-agent:6.3.1"
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                // You can then customize attributes of the publication as shown below.
+                groupId = 'com.trendyol.osiris'
+                artifactId = 'dispatcher-newrelic'
+                version = '1.0.0'
+
+                from components.java
+            }
+        }
+    }
 }
