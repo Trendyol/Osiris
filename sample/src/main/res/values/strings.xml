@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Osiris</string>
+    <string name="facebook_app_id">12345</string>
 </resources>
