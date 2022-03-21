@@ -6,5 +6,6 @@ include ':dispatchers:adjust'
 include ':dispatchers:facebook'
 include ':dispatchers:firebase'
 include ':dispatchers:newrelic'
+include ':util'
 
 include ':sample'
