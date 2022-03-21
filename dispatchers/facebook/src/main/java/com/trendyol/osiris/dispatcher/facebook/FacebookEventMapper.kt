@@ -1,14 +1,14 @@
 package com.trendyol.osiris.dispatcher.facebook
 
 import android.os.Bundle
+import androidx.core.os.bundleOf
 
 class FacebookEventMapper {
 
-    fun map(facebookEvent: FacebookEvent): Bundle {
-        val bundle = Bundle()
-        facebookEvent.getData().map {
-            bundle.putString(it.key, it.value.toString())
+    fun map(event: FacebookEvent): Bundle {
+        val pairs = event.getData().map {
+            it.key to it.value
         }
-        return bundle
+        return bundleOf(*pairs.toTypedArray())
     }
 }
