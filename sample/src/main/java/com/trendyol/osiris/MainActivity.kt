@@ -31,7 +31,17 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             getFacebookDispatcher(this),
             NewRelicDispatcher()
         )
-        osiris.logEvents(buildAdjustEvent(), SeenEvent(), SampleFacebookEvent("Erol"), buildNewRelicEvent())
+
+        osiris.addModifiers(
+            ExampleEventModifier()
+        )
+
+        osiris.logEvents(
+            buildAdjustEvent(),
+            SeenEvent(),
+            SampleFacebookEvent("Erol"),
+            buildNewRelicEvent(),
+        )
     }
 }
 
@@ -59,7 +69,6 @@ private fun buildAdjustEvent(): OsirisAdjustEvent {
     )
 }
 
-@OptIn(ExperimentalStdlibApi::class)
 private fun buildNewRelicEvent(): NewRelicEvent {
     val attributes = buildMap<String, Any> {
         put("screenName", "DeeplinkScreen")

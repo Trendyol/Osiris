@@ -2,6 +2,9 @@
 # Created by https://www.gitignore.io/api/android,intellij,gradle
 # Edit at https://www.gitignore.io/?templates=android,intellij,gradle
 
+.DS_Store
+**/.DS_Store
+
 ### Android ###
 # Built application files
 *.apk
