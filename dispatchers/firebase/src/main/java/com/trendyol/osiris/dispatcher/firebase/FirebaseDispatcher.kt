@@ -3,10 +3,10 @@ package com.trendyol.osiris.dispatcher.firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.Firebase
-import com.trendyol.osiris.Dispatcher
+import com.trendyol.osiris.EventDispatcher
 import com.trendyol.osiris.Event
 
-class FirebaseDispatcher : Dispatcher {
+class FirebaseDispatcher : EventDispatcher {
 
     private val firebase: FirebaseAnalytics = Firebase.analytics
 

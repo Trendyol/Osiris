@@ -33,12 +33,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         )
 
         osiris.addModifiers(
-            ExampleEventModifier()
+            NewRelicEventModifier()
         )
 
         osiris.logEvents(
             buildAdjustEvent(),
-            SeenEvent(),
             SampleFacebookEvent("Erol"),
             buildNewRelicEvent(),
         )
@@ -78,6 +77,6 @@ private fun buildNewRelicEvent(): NewRelicEvent {
     return NewRelicEvent("ResolveDeeplinkError", attributes)
 }
 
-class SeenEvent : FirebaseEvent("SeenEvent")
+private fun buildFirebaseEvent() =  FirebaseEvent("SeenEvent")
 
 class SampleFacebookEvent(override val name: String) : FacebookEvent(name)

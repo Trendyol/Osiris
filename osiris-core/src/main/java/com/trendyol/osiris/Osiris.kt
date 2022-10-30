@@ -2,16 +2,20 @@ package com.trendyol.osiris
 
 class Osiris {
 
-    private val dispatchers = mutableListOf<Dispatcher>()
+    private val dispatchers = mutableListOf<EventDispatcher>()
 
-    private val modifiers = mutableListOf<EventModifier>()
+    private val modifiers = mutableListOf<EventModifier<Event>>()
 
-    fun addDispatchers(vararg dispatchers: Dispatcher) = apply {
+    fun addDispatchers(vararg dispatchers: EventDispatcher) = apply {
         this.dispatchers.addAll(dispatchers)
     }
 
-    fun addModifiers(vararg modifiers: EventModifier) = apply {
+    fun addModifiers(vararg modifiers: EventModifier<Event>) = apply {
         this.modifiers.addAll(modifiers)
+    }
+
+    fun logEvents(events: List<Event>) {
+        logEvents(*events.toTypedArray())
     }
 
     fun logEvents(vararg events: Event) {
@@ -22,7 +26,7 @@ class Osiris {
                 eventModifier.modify(carriedEvent)
             }
 
-            val dispatcher: Dispatcher = dispatchers.find {
+            val dispatcher: EventDispatcher = dispatchers.find {
                 it.isSatisfied(finalEvent)
             } ?: return@forEach
 

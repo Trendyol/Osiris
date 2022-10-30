@@ -1,6 +1,6 @@
 package com.trendyol.osiris
 
-class OsirisTestDispatcher : Dispatcher {
+class OsirisTestDispatcher : EventDispatcher {
 
     override fun logEvent(event: Event) {
         // Do nothing

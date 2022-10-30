@@ -1,6 +1,6 @@
 package com.trendyol.osiris
 
-interface Dispatcher {
+interface EventDispatcher {
 
     fun logEvent(event: Event)
 

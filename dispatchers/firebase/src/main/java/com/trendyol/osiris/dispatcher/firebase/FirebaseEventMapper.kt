@@ -6,6 +6,6 @@ import com.trendyol.osiris.util.bundleOf
 class FirebaseEventMapper {
 
     fun map(event: FirebaseEvent): Bundle {
-        return bundleOf(event.getData())
+        return bundleOf(event.parameters)
     }
 }

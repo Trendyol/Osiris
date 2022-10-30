@@ -9,7 +9,7 @@ class OsirisTest {
     @Test
     fun `dispatcher_logEvent should send event modified by eventModifier implementations`() {
         // given
-        val dispatcher: Dispatcher = mockkClass(OsirisTestDispatcher::class)
+        val dispatcher: EventDispatcher = mockkClass(OsirisTestDispatcher::class)
 
         val osiris = Osiris()
             .addDispatchers(dispatcher)
