@@ -7,5 +7,5 @@ open class FacebookEvent(
     override val name: String,
     val bundle: Bundle? = null,
     val currency: String? = null,
-    val price: Double? = null
-) : Event(name)
+    val price: Double? = null,
+) : Event
