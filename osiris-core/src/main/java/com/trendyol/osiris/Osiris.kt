@@ -4,33 +4,33 @@ class Osiris {
 
     private val dispatchers = mutableListOf<EventDispatcher>()
 
-    private val modifiers = mutableListOf<EventModifier<Event>>()
+    private val modifiers = mutableListOf<EventModifier>()
 
     fun addDispatchers(vararg dispatchers: EventDispatcher) = apply {
         this.dispatchers.addAll(dispatchers)
     }
 
-    fun addModifiers(vararg modifiers: EventModifier<Event>) = apply {
+    fun addModifiers(vararg modifiers: EventModifier) = apply {
         this.modifiers.addAll(modifiers)
     }
 
-    fun logEvents(events: List<Event>) {
+    fun logEvents(events: List<Event<EventData>>) {
         logEvents(*events.toTypedArray())
     }
 
-    fun logEvents(vararg events: Event) {
+    fun logEvents(vararg events: Event<EventData>) {
         check(dispatchers.isNotEmpty()) { "At least one dispatcher should be set" }
 
         events.forEach { event ->
-            val finalEvent: Event = modifiers.fold(event) { carriedEvent, eventModifier ->
-                eventModifier.modify(carriedEvent)
-            }
+            val finalEvent: Event<EventData> = modifiers
+                .filter { it.isSatisfied(event) }
+                .fold(event) { carriedEvent, eventModifier ->
+                    eventModifier.modify(carriedEvent)
+                }
 
-            val dispatcher: EventDispatcher = dispatchers.find {
-                it.isSatisfied(finalEvent)
-            } ?: return@forEach
-
-            dispatcher.logEvent(event)
+            dispatchers
+                .find { it.isSatisfied(finalEvent) }
+                ?.logEvent(finalEvent)
         }
     }
 }

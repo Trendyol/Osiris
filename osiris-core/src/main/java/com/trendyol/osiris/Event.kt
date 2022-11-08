@@ -1,6 +1,6 @@
 package com.trendyol.osiris
 
-interface Event {
-
-    val name: String
-}
+data class Event<out T : EventData>(
+    val name: String,
+    val data: T,
+)

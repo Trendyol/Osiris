@@ -2,15 +2,15 @@ package com.trendyol.osiris
 
 import com.trendyol.osiris.dispatcher.newrelic.NewRelicEvent
 
-class NewRelicEventModifier : EventModifier<NewRelicEvent> {
+class NewRelicEventModifier : EventModifier {
 
-    override fun modify(event: NewRelicEvent): NewRelicEvent {
-        val newAttributes = event.attributes.toMutableMap()
-        newAttributes["a"] = "b"
-        return event.copy(attributes = newAttributes)
+    override fun modify(event: Event<EventData>): Event<EventData> {
+        val newRelicEvent = event.data as NewRelicEvent
+
+        return event.copy(data = newRelicEvent)
     }
 
-    override fun isSatisfied(event: Event): Boolean {
-        return event is NewRelicEvent
+    override fun isSatisfied(event: Event<EventData>): Boolean {
+        return event.data is NewRelicEvent
     }
 }
