@@ -1,8 +1,7 @@
 package com.trendyol.osiris.dispatcher.newrelic
 
-import com.trendyol.osiris.Event
+import com.trendyol.osiris.EventData
 
 data class NewRelicEvent(
-    override val name: String,
-    val attributes: Map<String, Any>
-) : Event
+    val params: Map<String, String>,
+) : EventData

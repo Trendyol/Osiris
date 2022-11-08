@@ -1,8 +1,8 @@
 package com.trendyol.osiris
 
-interface EventModifier<T : Event> {
+interface EventModifier {
 
-    fun modify(event: T): T
+    fun modify(event: Event<EventData>): Event<EventData>
 
-    fun isSatisfied(event: Event): Boolean
+    fun isSatisfied(event: Event<EventData>): Boolean
 }

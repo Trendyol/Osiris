@@ -1,11 +1,9 @@
 package com.trendyol.osiris.dispatcher.facebook
 
-import android.os.Bundle
-import com.trendyol.osiris.Event
+import com.trendyol.osiris.EventData
 
-open class FacebookEvent(
-    override val name: String,
-    val bundle: Bundle? = null,
-    val currency: String? = null,
-    val price: Double? = null,
-) : Event
+data class FacebookEvent(
+    val price: Double,
+    val currency: String,
+    val params: Map<String, String>,
+) : EventData

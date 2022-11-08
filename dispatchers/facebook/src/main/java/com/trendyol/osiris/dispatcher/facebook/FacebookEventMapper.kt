@@ -1,15 +1,13 @@
 package com.trendyol.osiris.dispatcher.facebook
 
 import android.os.Bundle
+import com.trendyol.osiris.Event
+import com.trendyol.osiris.EventData
 import com.trendyol.osiris.util.bundleOf
 
 class FacebookEventMapper {
 
     fun map(event: FacebookEvent): Bundle {
-        return bundleOf(
-            mapOf(
-                "a" to event.bundle
-            )
-        )
+        return bundleOf(event.params)
     }
 }
