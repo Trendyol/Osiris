@@ -6,27 +6,27 @@ import com.facebook.appevents.AppEventsLogger
 import com.trendyol.osiris.EventDispatcher
 import com.trendyol.osiris.Event
 import com.trendyol.osiris.EventData
+import com.trendyol.osiris.util.bundleOf
 import java.math.BigDecimal
 import java.util.Currency
 
 class FacebookDispatcher(context: Context) : EventDispatcher {
 
     private val appEventsLogger: AppEventsLogger = AppEventsLogger.newLogger(context)
-    private val facebookEventMapper by lazy { FacebookEventMapper() }
 
     override fun logEvent(event: Event<EventData>) {
         val facebookEvent = event.data as FacebookEvent
-        val facebookBundle = facebookEventMapper.map(facebookEvent)
+
         if (event.name == AppEventsConstants.EVENT_NAME_PURCHASED) {
             appEventsLogger.logPurchase(
-                BigDecimal.valueOf(facebookEvent.price ?: 0.0),
+                BigDecimal.valueOf(facebookEvent.price),
                 Currency.getInstance(facebookEvent.currency),
-                facebookBundle
+                bundleOf(facebookEvent.params),
             )
         } else {
             appEventsLogger.logEvent(
                 event.name,
-                facebookBundle
+                bundleOf(facebookEvent.params),
             )
         }
     }

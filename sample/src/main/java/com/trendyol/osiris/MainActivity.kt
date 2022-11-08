@@ -23,7 +23,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         )
 
         osiris.addModifiers(
-            NewRelicEventModifier()
+            NewRelicEventModifier(),
+            AdjustEventModifier(),
         )
 
         osiris.logEvents(HomeScreenSeenEvent().build())

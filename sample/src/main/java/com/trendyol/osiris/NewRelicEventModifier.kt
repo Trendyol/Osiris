@@ -6,7 +6,6 @@ class NewRelicEventModifier : EventModifier {
 
     override fun modify(event: Event<EventData>): Event<EventData> {
         val newRelicEvent = event.data as NewRelicEvent
-
         return event.copy(data = newRelicEvent)
     }
 
