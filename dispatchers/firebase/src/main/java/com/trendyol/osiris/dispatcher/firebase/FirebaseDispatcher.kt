@@ -6,17 +6,15 @@ import com.google.firebase.ktx.Firebase
 import com.trendyol.osiris.EventDispatcher
 import com.trendyol.osiris.Event
 import com.trendyol.osiris.EventData
+import com.trendyol.osiris.util.bundleOf
 
 class FirebaseDispatcher : EventDispatcher {
 
     private val firebase: FirebaseAnalytics = Firebase.analytics
 
-    private val mapper by lazy { FirebaseEventMapper() }
-
     override fun logEvent(event: Event<EventData>) {
-        val facebookEvent = event.data as FirebaseEvent
-        val bundle = mapper.map(facebookEvent)
-        //firebase.logEvent(event.name, bundle)
+        val firebaseEvent = event.data as FirebaseEvent
+        firebase.logEvent(event.name, bundleOf(firebaseEvent.params))
     }
 
     override fun isSatisfied(event: Event<EventData>): Boolean {

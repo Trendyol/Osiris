@@ -18,7 +18,7 @@ class HomeScreenSeenEvent : EventBuilder {
     )
 
     private fun buildAdjustEvent() = Event(
-        name = "test",
+        name = "testEvent",
         data = OsirisAdjustEvent(
             token = ""
         )

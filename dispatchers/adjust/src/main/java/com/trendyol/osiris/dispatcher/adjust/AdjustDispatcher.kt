@@ -8,14 +8,14 @@ import com.trendyol.osiris.EventDispatcher
 
 class AdjustDispatcher(adjustConfig: AdjustConfig) : EventDispatcher {
 
-    private val adjustEventMapper by lazy { AdjustEventMapper() }
+    private val eventAdapter by lazy { AdjustEventAdapter() }
 
     init {
         Adjust.onCreate(adjustConfig)
     }
 
     override fun logEvent(event: Event<EventData>) {
-        val adjustEvent = adjustEventMapper.map(event.data as OsirisAdjustEvent)
+        val adjustEvent = eventAdapter.adapt(event)
         Adjust.trackEvent(adjustEvent)
     }
 
