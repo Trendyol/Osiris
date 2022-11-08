@@ -1,4 +1,4 @@
-package com.trendyol.osiris.dispatcher.adjust
+package com.trendyol.osiris.dispatcher.adjust.util
 
 import com.trendyol.osiris.dispatcher.adjust.data.AdjustParameter
 import com.trendyol.osiris.dispatcher.adjust.data.AdjustParametrizedData
