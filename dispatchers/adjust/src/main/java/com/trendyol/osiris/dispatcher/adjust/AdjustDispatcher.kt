@@ -20,6 +20,6 @@ class AdjustDispatcher(adjustConfig: AdjustConfig) : EventDispatcher {
     }
 
     override fun isSatisfied(event: Event<EventData>): Boolean {
-        return event.data is OsirisAdjustEvent
+        return event.data is com.trendyol.osiris.dispatcher.adjustevent.OsirisAdjustEvent
     }
 }

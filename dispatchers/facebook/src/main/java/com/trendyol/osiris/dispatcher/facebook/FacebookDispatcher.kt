@@ -15,7 +15,7 @@ class FacebookDispatcher(context: Context) : EventDispatcher {
     private val appEventsLogger: AppEventsLogger = AppEventsLogger.newLogger(context)
 
     override fun logEvent(event: Event<EventData>) {
-        val facebookEvent = event.data as FacebookEvent
+        val facebookEvent = event.data as com.trendyol.osiris.dispatcher.facebook.FacebookEvent
 
         if (event.name == AppEventsConstants.EVENT_NAME_PURCHASED) {
             appEventsLogger.logPurchase(
@@ -32,6 +32,6 @@ class FacebookDispatcher(context: Context) : EventDispatcher {
     }
 
     override fun isSatisfied(event: Event<EventData>): Boolean {
-        return event.data is FacebookEvent
+        return event.data is com.trendyol.osiris.dispatcher.facebook.FacebookEvent
     }
 }

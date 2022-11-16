@@ -5,14 +5,14 @@ import com.adjust.sdk.criteo.AdjustCriteo
 import com.trendyol.osiris.Event
 import com.trendyol.osiris.EventAdapter
 import com.trendyol.osiris.EventData
-import com.trendyol.osiris.dispatcher.adjust.criteo.CriteoInjection
-import com.trendyol.osiris.dispatcher.adjust.data.AdjustParameter
-import com.trendyol.osiris.dispatcher.adjust.data.AdjustParametrizedData
+import com.trendyol.osiris.dispatcher.adjustevent.criteo.CriteoInjection
+import com.trendyol.osiris.dispatcher.adjustevent.data.AdjustParameter
+import com.trendyol.osiris.dispatcher.adjustevent.data.AdjustParametrizedData
 
 internal class AdjustEventAdapter : EventAdapter<AdjustEvent> {
 
     override fun adapt(event: Event<EventData>): AdjustEvent {
-        val osirisAdjustEvent = event.data as OsirisAdjustEvent
+        val osirisAdjustEvent = event.data as com.trendyol.osiris.dispatcher.adjustevent.OsirisAdjustEvent
         return AdjustEvent(osirisAdjustEvent.token).apply {
             osirisAdjustEvent.orderId?.let { orderId -> setOrderId(orderId) }
             osirisAdjustEvent.revenue?.let { revenueData -> setRevenue(revenueData.revenue, revenueData.currency) }

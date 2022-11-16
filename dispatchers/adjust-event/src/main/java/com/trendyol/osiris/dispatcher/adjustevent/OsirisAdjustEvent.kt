@@ -1,9 +1,9 @@
-package com.trendyol.osiris.dispatcher.adjust
+package com.trendyol.osiris.dispatcher.adjustevent
 
 import com.trendyol.osiris.EventData
-import com.trendyol.osiris.dispatcher.adjust.criteo.CriteoInjection
-import com.trendyol.osiris.dispatcher.adjust.data.AdjustParametrizedData
-import com.trendyol.osiris.dispatcher.adjust.data.AdjustRevenue
+import com.trendyol.osiris.dispatcher.adjustevent.criteo.CriteoInjection
+import com.trendyol.osiris.dispatcher.adjustevent.data.AdjustParametrizedData
+import com.trendyol.osiris.dispatcher.adjustevent.data.AdjustRevenue
 
 data class OsirisAdjustEvent(
     val token: String,

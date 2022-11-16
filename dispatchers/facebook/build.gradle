@@ -37,6 +37,7 @@ android {
 
 dependencies {
     implementation project(':osiris-core')
+    implementation project(":dispatchers:facebook-event")
     implementation project(':util')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

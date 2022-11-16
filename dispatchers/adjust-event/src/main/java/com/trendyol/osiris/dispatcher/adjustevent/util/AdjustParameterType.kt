@@ -1,7 +1,7 @@
-package com.trendyol.osiris.dispatcher.adjust.util
+package com.trendyol.osiris.dispatcher.adjustevent.util
 
-import com.trendyol.osiris.dispatcher.adjust.data.AdjustParameter
-import com.trendyol.osiris.dispatcher.adjust.data.AdjustParametrizedData
+import com.trendyol.osiris.dispatcher.adjustevent.data.AdjustParameter
+import com.trendyol.osiris.dispatcher.adjustevent.data.AdjustParametrizedData
 
 /**
  * The method provides [AdjustParametrizedData] data with [AdjustParameter.Callback] type

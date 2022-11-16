@@ -41,6 +41,11 @@ dependencies {
     implementation project(":dispatchers:facebook")
     implementation project(":dispatchers:newrelic")
 
+    implementation project(":dispatchers:adjust-event")
+    implementation project(":dispatchers:firebase-event")
+    implementation project(":dispatchers:facebook-event")
+    implementation project(":dispatchers:newrelic-event")
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     implementation 'androidx.core:core-ktx:1.7.0'
