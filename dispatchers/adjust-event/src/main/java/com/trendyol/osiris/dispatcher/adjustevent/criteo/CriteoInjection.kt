@@ -1,4 +1,4 @@
-package com.trendyol.osiris.dispatcher.adjust.criteo
+package com.trendyol.osiris.dispatcher.adjustevent.criteo
 
 import android.net.Uri
 import com.adjust.sdk.criteo.CriteoProduct

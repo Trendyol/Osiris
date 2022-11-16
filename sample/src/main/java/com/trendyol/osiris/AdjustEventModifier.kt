@@ -1,13 +1,13 @@
 package com.trendyol.osiris
 
-import com.trendyol.osiris.dispatcher.adjust.OsirisAdjustEvent
+import com.trendyol.osiris.dispatcher.adjustevent.OsirisAdjustEvent
 
 class AdjustEventModifier : EventModifier {
 
     override fun modify(event: Event<EventData>): Event<EventData> {
         val adjustEvent = event.data as OsirisAdjustEvent
-        val newAdjustEvent = adjustEvent.copy(token = "newToken")
-        return event.copy(data = newAdjustEvent)
+        // Make modifications on event data
+        return event.copy(data = adjustEvent)
     }
 
     override fun isSatisfied(event: Event<EventData>): Boolean {

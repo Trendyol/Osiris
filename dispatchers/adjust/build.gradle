@@ -37,6 +37,7 @@ android {
 
 dependencies {
     implementation project(':osiris-core')
+    implementation project(':dispatchers:adjust-event')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     api "com.adjust.sdk:adjust-android:4.25.0"

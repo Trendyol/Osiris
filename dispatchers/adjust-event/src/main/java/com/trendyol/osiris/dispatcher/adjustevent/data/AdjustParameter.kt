@@ -1,4 +1,4 @@
-package com.trendyol.osiris.dispatcher.adjust.data
+package com.trendyol.osiris.dispatcher.adjustevent.data
 
 sealed class AdjustParameter(open val data: String) {
     data class Callback(override val data: String) : AdjustParameter(data)

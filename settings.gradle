@@ -6,6 +6,13 @@ include ':dispatchers:adjust'
 include ':dispatchers:facebook'
 include ':dispatchers:firebase'
 include ':dispatchers:newrelic'
+
+include ':dispatchers:adjust-event'
+include ':dispatchers:facebook-event'
+include ':dispatchers:firebase-event'
+include ':dispatchers:newrelic-event'
+
 include ':util'
 
 include ':sample'
+

@@ -1,6 +1,6 @@
 package com.trendyol.osiris
 
-import com.trendyol.osiris.dispatcher.adjust.OsirisAdjustEvent
+import com.trendyol.osiris.dispatcher.adjustevent.OsirisAdjustEvent
 import com.trendyol.osiris.dispatcher.firebase.FirebaseEvent
 
 class HomeScreenSeenEvent : EventBuilder {

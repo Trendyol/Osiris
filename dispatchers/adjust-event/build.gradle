@@ -37,15 +37,10 @@ android {
 
 dependencies {
     implementation project(':osiris-core')
-    implementation project(":dispatchers:firebase-event")
-    implementation project(':util')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
-    implementation 'androidx.core:core-ktx:1.7.0'
-
-    implementation platform("com.google.firebase:firebase-bom:28.3.0")
-    implementation "com.google.firebase:firebase-analytics-ktx"
+    api "com.adjust.sdk:adjust-android:4.25.0"
+    api "com.adjust.sdk:adjust-android-criteo:4.25.0"
 }
 
 afterEvaluate {
@@ -55,7 +50,7 @@ afterEvaluate {
             release(MavenPublication) {
                 // You can then customize attributes of the publication as shown below.
                 groupId = 'com.trendyol.osiris'
-                artifactId = 'dispatcher-firebase'
+                artifactId = 'event-adjust'
                 version = '1.0.0'
 
                 from components.release
