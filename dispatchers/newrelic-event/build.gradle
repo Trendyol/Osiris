@@ -23,7 +23,7 @@ afterEvaluate {
             release(MavenPublication) {
                 // You can then customize attributes of the publication as shown below.
                 groupId = 'com.trendyol.osiris'
-                artifactId = 'dispatcher-newrelic'
+                artifactId = 'event-newrelic'
                 version = '1.0.0'
 
                 from components.java

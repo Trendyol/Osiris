@@ -53,7 +53,7 @@ afterEvaluate {
             release(MavenPublication) {
                 // You can then customize attributes of the publication as shown below.
                 groupId = 'com.trendyol.osiris'
-                artifactId = 'dispatcher-firebase'
+                artifactId = 'event-firebase'
                 version = '1.0.0'
 
                 from components.release
