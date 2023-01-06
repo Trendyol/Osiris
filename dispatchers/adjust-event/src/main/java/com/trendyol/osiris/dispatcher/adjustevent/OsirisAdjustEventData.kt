@@ -5,7 +5,7 @@ import com.trendyol.osiris.dispatcher.adjustevent.criteo.CriteoInjection
 import com.trendyol.osiris.dispatcher.adjustevent.data.AdjustParametrizedData
 import com.trendyol.osiris.dispatcher.adjustevent.data.AdjustRevenue
 
-data class OsirisAdjustEvent(
+data class OsirisAdjustEventData(
     val token: String,
     val parameterizedData: List<AdjustParametrizedData> = emptyList(),
     val criteoInject: List<CriteoInjection> = emptyList(),

@@ -1,15 +1,15 @@
 package com.trendyol.osiris
 
-import com.trendyol.osiris.dispatcher.newrelic.NewRelicEvent
+import com.trendyol.osiris.dispatcher.newrelic.NewRelicEventData
 
 class NewRelicEventModifier : EventModifier {
 
     override fun modify(event: Event<EventData>): Event<EventData> {
-        val newRelicEvent = event.data as NewRelicEvent
-        return event.copy(data = newRelicEvent)
+        val newRelicEventData = event.data as NewRelicEventData
+        return event.copy(data = newRelicEventData)
     }
 
     override fun isSatisfied(event: Event<EventData>): Boolean {
-        return event.data is NewRelicEvent
+        return event.data is NewRelicEventData
     }
 }

@@ -2,15 +2,15 @@ package com.trendyol.osiris.dispatcher.facebook
 
 import com.trendyol.osiris.EventData
 
-sealed class FacebookEventContract(open val params: Map<String, String>) {
+sealed class FacebookEventDataContract(open val params: Map<String, String>): EventData {
 
-    data class FacebookEvent(
+    data class FacebookEventData(
         override val params: Map<String, String>,
-    ) : EventData, FacebookEventContract(params)
+    ): FacebookEventDataContract(params)
 
-    data class FacebookPurchaseEvent(
+    data class FacebookPurchaseEventData(
         override val params: Map<String, String>,
         val price: Double,
         val currency: String,
-    ) : EventData, FacebookEventContract(params)
+    ): FacebookEventDataContract(params)
 }

@@ -12,12 +12,12 @@ import com.trendyol.osiris.dispatcher.adjustevent.data.AdjustParametrizedData
 internal class AdjustEventAdapter : EventAdapter<AdjustEvent> {
 
     override fun adapt(event: Event<EventData>): AdjustEvent {
-        val osirisAdjustEvent = event.data as com.trendyol.osiris.dispatcher.adjustevent.OsirisAdjustEvent
-        return AdjustEvent(osirisAdjustEvent.token).apply {
-            osirisAdjustEvent.orderId?.let { orderId -> setOrderId(orderId) }
-            osirisAdjustEvent.revenue?.let { revenueData -> setRevenue(revenueData.revenue, revenueData.currency) }
-            osirisAdjustEvent.parameterizedData.forEach { data -> addParameter(data) }
-            osirisAdjustEvent.criteoInject.forEach { criteoInjection -> injectEvent(criteoInjection) }
+        val osirisAdjustEventData = event.data as com.trendyol.osiris.dispatcher.adjustevent.OsirisAdjustEventData
+        return AdjustEvent(osirisAdjustEventData.token).apply {
+            osirisAdjustEventData.orderId?.let { orderId -> setOrderId(orderId) }
+            osirisAdjustEventData.revenue?.let { revenueData -> setRevenue(revenueData.revenue, revenueData.currency) }
+            osirisAdjustEventData.parameterizedData.forEach { data -> addParameter(data) }
+            osirisAdjustEventData.criteoInject.forEach { criteoInjection -> injectEvent(criteoInjection) }
         }
     }
 
@@ -36,10 +36,15 @@ internal class AdjustEventAdapter : EventAdapter<AdjustEvent> {
 
     private fun AdjustEvent.injectEvent(criteoInjection: CriteoInjection) = when (criteoInjection) {
         is CriteoInjection.Cart -> AdjustCriteo.injectCartIntoEvent(this, criteoInjection.products)
-        is CriteoInjection.Custom -> AdjustCriteo.injectCustomEventIntoEvent(this, criteoInjection.uiData,)
-        is CriteoInjection.Deeplink -> AdjustCriteo.injectDeeplinkIntoEvent(this, criteoInjection.uri,)
-        is CriteoInjection.TransactionConfirmed -> AdjustCriteo.injectTransactionConfirmedIntoEvent(this, criteoInjection.products, criteoInjection.transactionId, criteoInjection.newCustomer)
-        is CriteoInjection.ViewListing ->AdjustCriteo.injectViewListingIntoEvent(this, criteoInjection.productIds)
+        is CriteoInjection.Custom -> AdjustCriteo.injectCustomEventIntoEvent(this, criteoInjection.uiData)
+        is CriteoInjection.Deeplink -> AdjustCriteo.injectDeeplinkIntoEvent(this, criteoInjection.uri)
+        is CriteoInjection.TransactionConfirmed -> AdjustCriteo.injectTransactionConfirmedIntoEvent(
+            this,
+            criteoInjection.products,
+            criteoInjection.transactionId,
+            criteoInjection.newCustomer
+        )
+        is CriteoInjection.ViewListing -> AdjustCriteo.injectViewListingIntoEvent(this, criteoInjection.productIds)
         is CriteoInjection.ViewProduct -> AdjustCriteo.injectViewProductIntoEvent(this, criteoInjection.productId)
         is CriteoInjection.UserSegment -> AdjustCriteo.injectUserSegmentIntoCriteoEvents(criteoInjection.userSegment)
     }

@@ -1,8 +1,8 @@
 package com.trendyol.osiris
 
-import com.trendyol.osiris.dispatcher.adjustevent.OsirisAdjustEvent
-import com.trendyol.osiris.dispatcher.firebase.FirebaseEvent
-import com.trendyol.osiris.dispatcher.newrelic.NewRelicEvent
+import com.trendyol.osiris.dispatcher.adjustevent.OsirisAdjustEventData
+import com.trendyol.osiris.dispatcher.firebase.FirebaseEventData
+import com.trendyol.osiris.dispatcher.newrelic.NewRelicEventData
 
 class HomeScreenSeenEvent : EventBuilder {
 
@@ -14,21 +14,21 @@ class HomeScreenSeenEvent : EventBuilder {
 
     private fun buildFirebaseEvent() = Event(
         name = "testEvent",
-        data = FirebaseEvent(
+        data = FirebaseEventData(
             emptyMap()
         )
     )
 
     private fun buildAdjustEvent() = Event(
         name = "testEvent",
-        data = OsirisAdjustEvent(
+        data = OsirisAdjustEventData(
             token = ""
         )
     )
 
     private fun buildNewRelicEvent() = Event(
         name = "testEvent",
-        data = NewRelicEvent(
+        data = NewRelicEventData(
             mapOf("new" to "relic", "hello" to 1)
         )
     )

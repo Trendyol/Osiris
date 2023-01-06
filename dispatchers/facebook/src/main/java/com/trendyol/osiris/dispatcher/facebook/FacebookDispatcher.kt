@@ -15,11 +15,11 @@ class FacebookDispatcher(context: Context) : EventDispatcher {
 
     override fun logEvent(event: Event<EventData>) {
 
-        when (val facebookEvent = event.data as FacebookEventContract) {
-            is FacebookEventContract.FacebookEvent -> {
+        when (val facebookEvent = event.data as FacebookEventDataContract) {
+            is FacebookEventDataContract.FacebookEventData -> {
                 appEventsLogger.logEvent(event.name, bundleOf(facebookEvent.params))
             }
-            is FacebookEventContract.FacebookPurchaseEvent -> {
+            is FacebookEventDataContract.FacebookPurchaseEventData -> {
                 appEventsLogger.logPurchase(
                     BigDecimal.valueOf(facebookEvent.price),
                     Currency.getInstance(facebookEvent.currency),
@@ -30,6 +30,6 @@ class FacebookDispatcher(context: Context) : EventDispatcher {
     }
 
     override fun isSatisfied(event: Event<EventData>): Boolean {
-        return event.data is FacebookEventContract
+        return event.data is FacebookEventDataContract
     }
 }
