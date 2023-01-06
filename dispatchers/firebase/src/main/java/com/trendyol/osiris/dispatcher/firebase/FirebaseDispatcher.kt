@@ -13,11 +13,11 @@ class FirebaseDispatcher : EventDispatcher {
     private val firebase: FirebaseAnalytics = Firebase.analytics
 
     override fun logEvent(event: Event<EventData>) {
-        val firebaseEvent = event.data as FirebaseEvent
-        firebase.logEvent(event.name, bundleOf(firebaseEvent.params))
+        val firebaseEventData = event.data as FirebaseEventData
+        firebase.logEvent(event.name, bundleOf(firebaseEventData.params))
     }
 
     override fun isSatisfied(event: Event<EventData>): Boolean {
-        return event.data is FirebaseEvent
+        return event.data is FirebaseEventData
     }
 }

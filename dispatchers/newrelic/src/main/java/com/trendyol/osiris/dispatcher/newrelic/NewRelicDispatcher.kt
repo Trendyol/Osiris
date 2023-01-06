@@ -8,11 +8,11 @@ import com.trendyol.osiris.EventData
 class NewRelicDispatcher : EventDispatcher {
 
     override fun logEvent(event: Event<EventData>) {
-        val newRelicEvent = event.data as NewRelicEvent
-        NewRelic.recordCustomEvent(event.name, newRelicEvent.params)
+        val newRelicEventData = event.data as NewRelicEventData
+        NewRelic.recordCustomEvent(event.name, newRelicEventData.params)
     }
 
     override fun isSatisfied(event: Event<EventData>): Boolean {
-        return event.data is NewRelicEvent
+        return event.data is NewRelicEventData
     }
 }
