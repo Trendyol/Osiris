@@ -1,3 +1,5 @@
 package com.trendyol.osiris
 
-class OsirisTestEvent : Event(name = "osiris-test-event")
+data class OsirisTestEventData(
+    val params: Map<String, Any>
+) : EventData

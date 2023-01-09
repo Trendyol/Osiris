@@ -27,11 +27,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             AdjustEventModifier(),
         )
 
-        osiris.logEvents(HomeScreenSeenEvent().build())
+        osiris.logEvents(HomeScreenSeenEventBuilder().build())
 
         osiris.logEvents(
-            HomeScreenSeenEvent(),
-            HomeScreenSeenEvent(),
+            HomeScreenSeenEventBuilder(),
+            HomeScreenSeenEventBuilder(),
         )
     }
 }

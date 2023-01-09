@@ -15,12 +15,12 @@ class AdjustDispatcher(adjustConfig: AdjustConfig) : EventDispatcher {
         Adjust.onCreate(adjustConfig)
     }
 
+    override fun isSatisfied(event: Event<EventData>): Boolean {
+        return event.data is OsirisAdjustEventData
+    }
+
     override fun logEvent(event: Event<EventData>) {
         val adjustEvent = eventAdapter.adapt(event)
         Adjust.trackEvent(adjustEvent)
-    }
-
-    override fun isSatisfied(event: Event<EventData>): Boolean {
-        return event.data is OsirisAdjustEventData
     }
 }
