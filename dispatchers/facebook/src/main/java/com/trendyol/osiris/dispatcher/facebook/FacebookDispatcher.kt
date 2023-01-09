@@ -21,7 +21,7 @@ class FacebookDispatcher(context: Context) : EventDispatcher {
             }
             is FacebookEventDataContract.FacebookPurchaseEventData -> {
                 appEventsLogger.logPurchase(
-                    BigDecimal.valueOf(facebookEvent.price),
+                    BigDecimal.valueOf(facebookEvent.price ?: 0.0),
                     Currency.getInstance(facebookEvent.currency),
                     bundleOf(facebookEvent.params)
                 )
