@@ -1,14 +1,18 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'maven-publish'
 }
 
 android {
-    compileSdk 32
+    compileSdkVersion 32
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
-        minSdk 21
-        targetSdk 32
+        minSdkVersion 21
+        targetSdkVersion 32
+        versionCode 1
+        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -28,5 +32,21 @@ android {
 
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                // You can then customize attributes of the publication as shown below.
+                groupId = 'com.trendyol.osiris'
+                artifactId = 'osiris-util'
+                version = '1.0.0'
+
+                from components.release
+            }
+        }
     }
 }
