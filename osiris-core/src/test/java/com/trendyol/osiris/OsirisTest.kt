@@ -1,6 +1,10 @@
 package com.trendyol.osiris
 
-import io.mockk.*
+import io.mockk.every
+import io.mockk.just
+import io.mockk.mockkClass
+import io.mockk.runs
+import io.mockk.slot
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -10,29 +14,35 @@ class OsirisTest {
     fun `dispatcher_logEvent should send event modified by eventModifier implementations`() {
         // given
         val dispatcher: EventDispatcher = mockkClass(OsirisTestDispatcher::class)
+        val eventName = "osiris-test-event"
 
         val osiris = Osiris()
             .addDispatchers(dispatcher)
             .addModifiers(OsirisTestEventModifier())
 
-        val event = OsirisTestEvent()
+        val eventData = OsirisTestEventData(
+            params = mapOf(
+                "key-to-modify-1" to "value-to-modify-1",
+                "key-to-modify-3" to "value-to-modify-3"
+            )
+        )
 
-        event.add("key-to-modify-1", "value-to-modify-1")
-        event.add("key-to-modify-3", "value-to-modify-3")
+        val expectedEventData = OsirisTestEventData(
+            params = mapOf(
+                "key-to-modify-1" to "modified-value-1",
+                "key-to-modify-2" to "modified-value-2",
+                "key-to-modify-3" to "value-to-modify-3"
+            )
+        )
 
-        val expectedEvent = OsirisTestEvent()
-            .add("key-to-modify-1", "modified-value-1")
-            .add("key-to-modify-2", "modified-value-2")
-            .add("key-to-modify-3", "value-to-modify-3")
-
-        val eventSlot = slot<Event>()
-        every { dispatcher.isSatisfied(event) } returns true
+        val eventSlot = slot<Event<EventData>>()
+        every { dispatcher.isSatisfied(any()) } returns true
         every { dispatcher.logEvent(capture(eventSlot)) } just runs
 
         // when
-        osiris.logEvents(event)
+        osiris.logEvents(Event(eventName, eventData))
 
         // then
-        assertEquals(eventSlot.captured.getData(), expectedEvent.getData())
+        assertEquals(eventSlot.captured.data, expectedEventData)
     }
 }

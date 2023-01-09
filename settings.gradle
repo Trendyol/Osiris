@@ -12,7 +12,5 @@ include ':dispatchers:facebook-event'
 include ':dispatchers:firebase-event'
 include ':dispatchers:newrelic-event'
 
-include ':util'
-
 include ':sample'
 
