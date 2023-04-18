@@ -1,12 +1,40 @@
 plugins {
-    id 'java-library'
-    id 'kotlin'
+    id 'com.android.library'
+    id 'kotlin-android'
     id 'maven-publish'
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+android {
+    namespace 'com.trendyol.osiris.event.newrelic'
+
+    compileSdkVersion 33
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
@@ -16,17 +44,34 @@ dependencies {
     implementation "com.newrelic.agent.android:android-agent:6.3.1"
 }
 
-afterEvaluate {
-    publishing {
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    if (project.plugins.findPlugin("com.android.library")) {
+        from android.sourceSets.main.java.srcDirs
+        from android.sourceSets.main.kotlin.srcDirs
+    } else {
+        from sourceSets.main.java.srcDirs
+        from sourceSets.main.kotlin.srcDirs
+    }
+}
+
+artifacts {
+    archives androidSourcesJar
+}
+
+publishing {
+    repositories {
         publications {
-            // Creates a Maven publication called "release".
             release(MavenPublication) {
-                // You can then customize attributes of the publication as shown below.
-                groupId = 'com.trendyol.osiris'
-                artifactId = 'event-newrelic'
+                groupId = 'com.trendyol.osiris.event'
+                artifactId = 'adjust'
                 version = '1.0.0'
 
-                from components.java
+                artifact androidSourcesJar
+
+                afterEvaluate {
+                    from components.release
+                }
             }
         }
     }

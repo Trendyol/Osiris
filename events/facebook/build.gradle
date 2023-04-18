@@ -5,12 +5,14 @@ plugins {
 }
 
 android {
-    compileSdkVersion 32
+    namespace 'com.trendyol.osiris.event.facebook'
+
+    compileSdkVersion 33
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 32
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
@@ -39,22 +41,38 @@ dependencies {
     implementation project(':osiris-core')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.core:core-ktx:1.10.0'
     implementation 'com.facebook.android:facebook-core:12.3.0'
 }
 
-afterEvaluate {
-    publishing {
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    if (project.plugins.findPlugin("com.android.library")) {
+        from android.sourceSets.main.java.srcDirs
+        from android.sourceSets.main.kotlin.srcDirs
+    } else {
+        from sourceSets.main.java.srcDirs
+        from sourceSets.main.kotlin.srcDirs
+    }
+}
+
+artifacts {
+    archives androidSourcesJar
+}
+
+publishing {
+    repositories {
         publications {
-            // Creates a Maven publication called "release".
             release(MavenPublication) {
-                // You can then customize attributes of the publication as shown below.
-                groupId = 'com.trendyol.osiris'
-                artifactId = 'event-facebook'
+                groupId = 'com.trendyol.osiris.event'
+                artifactId = 'facebook'
                 version = '1.0.0'
 
-                from components.release
+                artifact androidSourcesJar
+
+                afterEvaluate {
+                    from components.release
+                }
             }
         }
     }

@@ -16,17 +16,34 @@ dependencies {
     testImplementation "io.mockk:mockk:1.12.4"
 }
 
-afterEvaluate {
-    publishing {
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    if (project.plugins.findPlugin("com.android.library")) {
+        from android.sourceSets.main.java.srcDirs
+        from android.sourceSets.main.kotlin.srcDirs
+    } else {
+        from sourceSets.main.java.srcDirs
+        from sourceSets.main.kotlin.srcDirs
+    }
+}
+
+artifacts {
+    archives androidSourcesJar
+}
+
+publishing {
+    repositories {
         publications {
-            // Creates a Maven publication called "release".
             release(MavenPublication) {
-                // You can then customize attributes of the publication as shown below.
                 groupId = 'com.trendyol.osiris'
                 artifactId = 'osiris-core'
                 version = '1.0.0'
 
-                from components.java
+                artifact androidSourcesJar
+
+                afterEvaluate {
+                    from components.java
+                }
             }
         }
     }

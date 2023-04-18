@@ -4,13 +4,15 @@ plugins {
 }
 
 android {
-    compileSdkVersion 32
+    namespace 'com.trendyol.osiris'
+
+    compileSdkVersion 33
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.trendyol.osiris"
         minSdkVersion 21
-        targetSdkVersion 32
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
