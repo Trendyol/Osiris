@@ -1,6 +1,6 @@
 package com.trendyol.osiris
 
-import com.trendyol.osiris.dispatcher.adjustevent.OsirisAdjustEventData
+import com.trendyol.osiris.event.adjust.OsirisAdjustEventData
 
 class AdjustEventModifier : EventModifier {
 

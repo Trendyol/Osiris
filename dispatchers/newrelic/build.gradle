@@ -11,7 +11,7 @@ java {
 
 dependencies {
     implementation project(':osiris-core')
-    implementation project(":dispatchers:newrelic-event")
+    implementation project(":events:newrelic")
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "com.newrelic.agent.android:android-agent:6.3.1"

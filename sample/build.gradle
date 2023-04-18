@@ -36,15 +36,16 @@ android {
 
 dependencies {
     implementation project(":osiris-core")
+
+    implementation project(":events:adjust")
+    implementation project(":events:firebase")
+    implementation project(":events:facebook")
+    implementation project(":events:newrelic")
+
     implementation project(":dispatchers:adjust")
     implementation project(":dispatchers:firebase")
     implementation project(":dispatchers:facebook")
     implementation project(":dispatchers:newrelic")
-
-    implementation project(":dispatchers:adjust-event")
-    implementation project(":dispatchers:firebase-event")
-    implementation project(":dispatchers:facebook-event")
-    implementation project(":dispatchers:newrelic-event")
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 

@@ -1,9 +1,9 @@
 package com.trendyol.osiris
 
-import com.trendyol.osiris.dispatcher.adjustevent.OsirisAdjustEventData
-import com.trendyol.osiris.dispatcher.facebook.FacebookEventDataContract
-import com.trendyol.osiris.dispatcher.firebase.FirebaseEventData
-import com.trendyol.osiris.dispatcher.newrelic.NewRelicEventData
+import com.trendyol.osiris.event.adjust.OsirisAdjustEventData
+import com.trendyol.osiris.event.facebook.FacebookEventDataContract
+import com.trendyol.osiris.event.firebase.FirebaseEventData
+import com.trendyol.osiris.event.newrelic.NewRelicEventData
 
 class HomeScreenSeenEventBuilder : EventBuilder {
 
