@@ -5,9 +5,9 @@ import com.trendyol.osiris.event.facebook.FacebookEventDataContract
 import com.trendyol.osiris.event.firebase.FirebaseEventData
 import com.trendyol.osiris.event.newrelic.NewRelicEventData
 
-class HomeScreenSeenEventBuilder : EventBuilder {
+class HomeScreenSeenEventBuilder {
 
-    override fun build(): List<Event<EventData>> = listOf(
+    fun build(): List<Event<EventData>> = listOf(
         buildFirebaseEvent(),
         buildAdjustEvent(),
         buildNewRelicEvent(),
