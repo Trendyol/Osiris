@@ -40,7 +40,6 @@ android {
 dependencies {
     implementation project(':osiris-core')
     implementation project(':events:adjust')
-
     api "com.adjust.sdk:adjust-android:4.25.0"
     api "com.adjust.sdk:adjust-android-criteo:4.25.0"
 }

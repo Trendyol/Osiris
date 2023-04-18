@@ -40,7 +40,6 @@ android {
 dependencies {
     implementation project(':osiris-core')
     implementation project(":events:facebook")
-
     implementation 'com.facebook.android:facebook-core:12.3.0'
 }
 
