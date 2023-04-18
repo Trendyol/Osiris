@@ -33,7 +33,7 @@ publishing {
         publications {
             release(MavenPublication) {
                 groupId = 'com.trendyol.osiris.event'
-                artifactId = 'adjust'
+                artifactId = 'newrelic'
                 version = '1.0.0'
 
                 artifact androidSourcesJar
