@@ -14,13 +14,13 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         super.onCreate(savedInstanceState)
 
         val osiris = Osiris.Builder()
-            .addDispatchers(
+            .dispatcher(
                 AdjustDispatcher(AdjustConfig(this, "", "")),
                 FirebaseDispatcher(),
                 FacebookDispatcher(this),
                 NewRelicDispatcher(),
             )
-            .addModifiers(
+            .modifier(
                 NewRelicEventModifier(),
                 AdjustEventModifier(),
             )
