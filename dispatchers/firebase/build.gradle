@@ -41,7 +41,7 @@ dependencies {
     implementation project(':osiris-core')
     implementation project(":events:firebase")
 
-    implementation 'androidx.core:core-ktx:1.10.0'
+    implementation 'androidx.core:core-ktx:1.7.0'
     implementation platform("com.google.firebase:firebase-bom:28.3.0")
     implementation "com.google.firebase:firebase-analytics-ktx"
 }
