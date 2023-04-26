@@ -4,6 +4,7 @@ import com.newrelic.agent.android.NewRelic
 import com.trendyol.osiris.Event
 import com.trendyol.osiris.EventData
 import com.trendyol.osiris.EventDispatcher
+import com.trendyol.osiris.event.newrelic.NewRelicEventData
 
 class NewRelicDispatcher : EventDispatcher {
 

@@ -1,6 +1,6 @@
 package com.trendyol.osiris
 
-import com.trendyol.osiris.dispatcher.newrelic.NewRelicEventData
+import com.trendyol.osiris.event.newrelic.NewRelicEventData
 
 class NewRelicEventModifier : EventModifier {
 

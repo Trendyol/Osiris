@@ -7,6 +7,7 @@ import com.facebook.appevents.AppEventsLogger
 import com.trendyol.osiris.Event
 import com.trendyol.osiris.EventData
 import com.trendyol.osiris.EventDispatcher
+import com.trendyol.osiris.event.facebook.FacebookEventDataContract
 import java.math.BigDecimal
 import java.util.Currency
 

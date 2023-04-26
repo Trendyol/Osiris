@@ -7,6 +7,7 @@ import com.google.firebase.ktx.Firebase
 import com.trendyol.osiris.Event
 import com.trendyol.osiris.EventData
 import com.trendyol.osiris.EventDispatcher
+import com.trendyol.osiris.event.firebase.FirebaseEventData
 
 class FirebaseDispatcher : EventDispatcher {
 

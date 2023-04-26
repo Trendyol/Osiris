@@ -10,28 +10,22 @@ import com.trendyol.osiris.dispatcher.newrelic.NewRelicDispatcher
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
-    private val osiris = Osiris()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        osiris.addDispatchers(
-            AdjustDispatcher(AdjustConfig(this, "", "")),
-            FirebaseDispatcher(),
-            FacebookDispatcher(this),
-            NewRelicDispatcher()
-        )
-
-        osiris.addModifiers(
-            NewRelicEventModifier(),
-            AdjustEventModifier(),
-        )
+        val osiris = Osiris.Builder()
+            .dispatcher(
+                AdjustDispatcher(AdjustConfig(this, "", "")),
+                FirebaseDispatcher(),
+                FacebookDispatcher(this),
+                NewRelicDispatcher(),
+            )
+            .modifier(
+                NewRelicEventModifier(),
+                AdjustEventModifier(),
+            )
+            .build()
 
         osiris.logEvents(HomeScreenSeenEventBuilder().build())
-
-        osiris.logEvents(
-            HomeScreenSeenEventBuilder(),
-            HomeScreenSeenEventBuilder(),
-        )
     }
 }

@@ -1,25 +1,12 @@
 package com.trendyol.osiris
 
-class Osiris {
-
-    private val dispatchers = mutableListOf<EventDispatcher>()
-
-    private val modifiers = mutableListOf<EventModifier>()
-
-    fun addDispatchers(vararg dispatchers: EventDispatcher) = apply {
-        this.dispatchers.addAll(dispatchers)
-    }
-
-    fun addModifiers(vararg modifiers: EventModifier) = apply {
-        this.modifiers.addAll(modifiers)
-    }
+class Osiris private constructor(
+    private val dispatchers: List<EventDispatcher>,
+    private val modifiers: List<EventModifier>,
+) {
 
     fun logEvents(events: List<Event<EventData>>) {
         logEvents(*events.toTypedArray())
-    }
-
-    fun logEvents(vararg eventBuilder: EventBuilder) {
-        eventBuilder.forEach { logEvents(it.build()) }
     }
 
     fun logEvents(vararg events: Event<EventData>) {
@@ -36,5 +23,33 @@ class Osiris {
                 .find { it.isSatisfied(finalEvent) }
                 ?.logEvent(finalEvent)
         }
+    }
+
+    class Builder {
+
+        private val dispatchers = mutableListOf<EventDispatcher>()
+
+        private val modifiers = mutableListOf<EventModifier>()
+
+        fun dispatcher(vararg dispatcher: EventDispatcher) = apply {
+            this.dispatchers.addAll(dispatcher)
+        }
+
+        fun modifier(vararg modifier: EventModifier) = apply {
+            this.modifiers.addAll(modifier)
+        }
+
+        fun dispatchers(dispatchers: List<EventDispatcher>) = apply {
+            this.dispatchers.addAll(dispatchers)
+        }
+
+        fun modifiers(modifiers: List<EventModifier>) = apply {
+            this.modifiers.addAll(modifiers)
+        }
+
+        fun build() = Osiris(
+            dispatchers = dispatchers,
+            modifiers = modifiers,
+        )
     }
 }

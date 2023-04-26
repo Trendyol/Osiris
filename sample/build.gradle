@@ -4,13 +4,15 @@ plugins {
 }
 
 android {
-    compileSdkVersion 32
+    namespace 'com.trendyol.osiris'
+
+    compileSdkVersion 33
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.trendyol.osiris"
         minSdkVersion 21
-        targetSdkVersion 32
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
@@ -36,15 +38,16 @@ android {
 
 dependencies {
     implementation project(":osiris-core")
+
+    implementation project(":events:adjust")
+    implementation project(":events:firebase")
+    implementation project(":events:facebook")
+    implementation project(":events:newrelic")
+
     implementation project(":dispatchers:adjust")
     implementation project(":dispatchers:firebase")
     implementation project(":dispatchers:facebook")
     implementation project(":dispatchers:newrelic")
-
-    implementation project(":dispatchers:adjust-event")
-    implementation project(":dispatchers:firebase-event")
-    implementation project(":dispatchers:facebook-event")
-    implementation project(":dispatchers:newrelic-event")
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
@@ -54,8 +57,8 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
 
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
 
 apply plugin: 'com.google.gms.google-services'

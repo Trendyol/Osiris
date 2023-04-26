@@ -11,23 +11,38 @@ java {
 
 dependencies {
     implementation project(':osiris-core')
-    implementation project(":dispatchers:newrelic-event")
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation project(":events:newrelic")
     implementation "com.newrelic.agent.android:android-agent:6.3.1"
 }
 
-afterEvaluate {
-    publishing {
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    if (project.plugins.findPlugin("com.android.library")) {
+        from android.sourceSets.main.java.srcDirs
+        from android.sourceSets.main.kotlin.srcDirs
+    } else {
+        from sourceSets.main.java.srcDirs
+        from sourceSets.main.kotlin.srcDirs
+    }
+}
+
+artifacts {
+    archives androidSourcesJar
+}
+
+publishing {
+    repositories {
         publications {
-            // Creates a Maven publication called "release".
             release(MavenPublication) {
-                // You can then customize attributes of the publication as shown below.
-                groupId = 'com.trendyol.osiris'
-                artifactId = 'dispatcher-newrelic'
+                groupId = 'com.trendyol.osiris.dispatcher'
+                artifactId = 'newrelic'
                 version = '1.0.0'
 
-                from components.java
+                artifact androidSourcesJar
+
+                afterEvaluate {
+                    from components.java
+                }
             }
         }
     }

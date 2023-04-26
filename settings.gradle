@@ -2,15 +2,15 @@ rootProject.name = "Osiris"
 
 include ':osiris-core'
 
+include ':events:adjust'
+include ':events:facebook'
+include ':events:firebase'
+include ':events:newrelic'
+
 include ':dispatchers:adjust'
 include ':dispatchers:facebook'
 include ':dispatchers:firebase'
 include ':dispatchers:newrelic'
-
-include ':dispatchers:adjust-event'
-include ':dispatchers:facebook-event'
-include ':dispatchers:firebase-event'
-include ':dispatchers:newrelic-event'
 
 include ':sample'
 

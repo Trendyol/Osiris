@@ -5,7 +5,7 @@ import com.adjust.sdk.AdjustConfig
 import com.trendyol.osiris.Event
 import com.trendyol.osiris.EventData
 import com.trendyol.osiris.EventDispatcher
-import com.trendyol.osiris.dispatcher.adjustevent.OsirisAdjustEventData
+import com.trendyol.osiris.event.adjust.OsirisAdjustEventData
 
 class AdjustDispatcher(adjustConfig: AdjustConfig) : EventDispatcher {
 

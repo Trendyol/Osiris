@@ -1,0 +1,47 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+    id 'maven-publish'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+    implementation project(':osiris-core')
+}
+
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    if (project.plugins.findPlugin("com.android.library")) {
+        from android.sourceSets.main.java.srcDirs
+        from android.sourceSets.main.kotlin.srcDirs
+    } else {
+        from sourceSets.main.java.srcDirs
+        from sourceSets.main.kotlin.srcDirs
+    }
+}
+
+artifacts {
+    archives androidSourcesJar
+}
+
+publishing {
+    repositories {
+        publications {
+            release(MavenPublication) {
+                groupId = 'com.trendyol.osiris.event'
+                artifactId = 'newrelic'
+                version = '1.0.0'
+
+                artifact androidSourcesJar
+
+                afterEvaluate {
+                    from components.java
+                }
+            }
+        }
+    }
+}

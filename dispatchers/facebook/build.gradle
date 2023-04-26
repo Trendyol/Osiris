@@ -5,12 +5,14 @@ plugins {
 }
 
 android {
-    compileSdkVersion 32
+    namespace 'com.trendyol.osiris.dispatcher.facebook'
+
+    compileSdkVersion 33
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 32
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
@@ -37,30 +39,38 @@ android {
 
 dependencies {
     implementation project(':osiris-core')
-    implementation project(":dispatchers:facebook-event")
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation project(":events:facebook")
     implementation 'com.facebook.android:facebook-core:12.3.0'
-
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
 
-afterEvaluate {
-    publishing {
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    if (project.plugins.findPlugin("com.android.library")) {
+        from android.sourceSets.main.java.srcDirs
+        from android.sourceSets.main.kotlin.srcDirs
+    } else {
+        from sourceSets.main.java.srcDirs
+        from sourceSets.main.kotlin.srcDirs
+    }
+}
+
+artifacts {
+    archives androidSourcesJar
+}
+
+publishing {
+    repositories {
         publications {
-            // Creates a Maven publication called "release".
             release(MavenPublication) {
-                // You can then customize attributes of the publication as shown below.
-                groupId = 'com.trendyol.osiris'
-                artifactId = 'dispatcher-facebook'
+                groupId = 'com.trendyol.osiris.dispatcher'
+                artifactId = 'facebook'
                 version = '1.0.0'
 
-                from components.release
+                artifact androidSourcesJar
+
+                afterEvaluate {
+                    from components.release
+                }
             }
         }
     }
