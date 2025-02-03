@@ -1,3 +1,5 @@
+
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/Trendyol/Osiris/badge)](https://scorecard.dev/viewer/?uri=github.com/Trendyol/Osiris)
 # Osiris SDK
 
 Osiris, lord of the dead and rebirth
